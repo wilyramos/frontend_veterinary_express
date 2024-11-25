@@ -5,13 +5,17 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
 
+    const [cargando, setCargando] = useState(true);
     const [auth, setAuth] = useState({});
 
     useEffect(() => {
         const autenticarUsuario = async () => {
             const token = localStorage.getItem('tokenVeterinaria');
 
-            if(!token) return;
+            if(!token) {
+                setCargando(false);
+                return;
+            }
             const config = {
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,22 +31,27 @@ const AuthProvider = ({ children }) => {
                 console.log(error.response.data.msg);
                 setAuth({}); // Si hay un error, limpiar el state de auth
             }
+            setCargando(false);
         }
         autenticarUsuario();
     }, []);
 
-    
+    const cerrarSesion = () => {
+        localStorage.removeItem('tokenVeterinaria');
+        setAuth({});
+    } 
     return(
         <AuthContext.Provider
             value={{
                 auth,
-                setAuth
+                setAuth,
+                cargando,
+                cerrarSesion
             }}
         >
             {children}
         </AuthContext.Provider>
     )
-
 };
 
 export { AuthProvider}

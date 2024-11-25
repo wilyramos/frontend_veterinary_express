@@ -11,6 +11,8 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [alerta, setAlerta] = useState({})
 
+  const { setAuth } = useAuth()
+
   const navigate = useNavigate()
 
   const { msg } = alerta
@@ -24,12 +26,12 @@ export default function Login() {
     }
 
     try {
-
-
       const { data } = await clienteAxios.post('/api/veterinarios/login', { email, password })
       localStorage.setItem('tokenVeterinaria', data.token)
+      console.log(data)
+      setAuth(data)
       navigate('/admin')
-
+      
     } catch (error) {
       setAlerta({ tipo: 'error', msg: error.response.data.msg })
     }
@@ -88,9 +90,6 @@ export default function Login() {
           />
 
         </form>
-
-
-
 
 
         <nav className='mt-10 flex justify-between'>
