@@ -45,10 +45,10 @@ export default function Paciente({ paciente }) {
                         </p>
                     </div>
 
-                    <div className="items-center flex justify-between">
+                    <div className="flex gap-1 h-10">
                         <button
                             type="button"
-                            className="py-2 px-8 bg-green-600 hover:bg-green-700 text-white rounded-lg"
+                            className=" py-2 px-8 bg-green-600 hover:bg-green-700 text-white rounded-lg"
                             onClick={() => setEdicion(paciente)}
                         > Editar </button>
                         <button

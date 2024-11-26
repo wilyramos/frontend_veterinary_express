@@ -40,13 +40,84 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem('tokenVeterinaria');
         setAuth({});
     } 
+
+    const actualizarPerfil = async (datos) => {
+        
+        const token = localStorage.getItem('tokenVeterinaria');
+        if(!token) {
+            setCargando(false);
+            return;
+        }
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        try {
+            const url = `/api/veterinarios/perfil/${datos._id}`;
+            const { data } = await clienteAxios.put(url, datos, config);
+
+            return {
+                msg: 'Perfil actualizado correctamente',
+                tipo: 'success'
+            }
+
+            setAuth(data);
+        } catch (error) {
+            return {
+                msg: error.response.data.msg,
+                tipo: 'error'
+            }
+        }
+    
+    }
+
+    const guardarPassword = async (datos) => {
+        
+        const token = localStorage.getItem('tokenVeterinaria');
+        if(!token) {
+            setCargando(false);
+            return;
+        }
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        try {
+            const url = '/api/veterinarios/actualizar-password';
+            const { data } = await clienteAxios.put(url, datos, config);
+
+            return {
+                msg: data.msg,
+                tipo: 'success'
+            }
+
+        } catch (error) {
+            return {
+                msg: error.response.data.msg,
+                tipo: 'error'
+            }
+        }
+
+    }
+
+
     return(
         <AuthContext.Provider
             value={{
                 auth,
                 setAuth,
                 cargando,
-                cerrarSesion
+                cerrarSesion,
+                actualizarPerfil,
+                guardarPassword
             }}
         >
             {children}

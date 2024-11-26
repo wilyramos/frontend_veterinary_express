@@ -16,7 +16,7 @@ export default function Header() {
 
             <nav className="flex flex-col md:flex-row gap-1 md:gap-4 mt-5 lg:mt-0 items-center ">
                 <Link to="/" className="text-white hover:text-indigo-300">Pacientes</Link>
-                <Link to="/login" className="text-white hover:text-indigo-300">Perfil</Link>
+                <Link to="/admin/perfil" className="text-white hover:text-indigo-300">Perfil</Link>
                 <button 
                     className="bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded-lg"
                     onClick={cerrarSesion}

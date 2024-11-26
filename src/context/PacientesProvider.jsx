@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import clienteAxios from "../config/axios";
-import Alerta from "../components/Alerta";
+import useAuth from "../hooks/useAuth";
 
 const PacientesContext = createContext();
 
@@ -8,6 +8,7 @@ export const PacientesProvider = ({ children }) => {
 
     const [pacientes, setPacientes] = useState([]);
     const [paciente, setPaciente] = useState();
+    const { auth } = useAuth();
 
     // Obtener los pacientes de la BD
     useEffect(() => {
@@ -30,7 +31,7 @@ export const PacientesProvider = ({ children }) => {
 
         }
         obtenerPacientes();
-    }, []);
+    }, [auth]);
 
     const guardarPaciente = async (paciente) => {
 

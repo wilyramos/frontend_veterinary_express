@@ -22,7 +22,7 @@ export default function RutaProtegida() {
                     </main>
                 ) : <Navigate to="/" />
             }
-            <AdministrarPacientes />
+            {/* <AdministrarPacientes /> */}
             
             <Footer />
         </>

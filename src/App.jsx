@@ -9,6 +9,8 @@ import Navbar from './components/Navbar'
 import NuevoPassword from './pages/NuevoPassword'
 import AdministrarPacientes from './pages/AdministrarPacientes'
 import Footer from './components/Footer'
+import EditarPerfil from './pages/EditarPerfil'
+import CambiarPassword from './pages/CambiarPassword'
 
 
 import NavBarAdmin from './layout/NavBarAdmin'
@@ -34,8 +36,9 @@ function App() {
             </Route>
 
             <Route path="/admin" element={<RutaProtegida />}>
-              <Route index element={<NavBarAdmin />} />
               <Route index element={<AdministrarPacientes />} />
+              <Route path='perfil' element={<EditarPerfil />} />
+              <Route path='cambiar-password' element={<CambiarPassword />} />
             </Route>
 
             <Route path="*" element={<div>Not Found</div>} />

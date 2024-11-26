@@ -8,8 +8,7 @@ export default function AdministrarPacientes() {
     const [ mostrarFormulario, setMostrarFormulario ] = useState(false)
 
   return (
-    <div className="flex flex-col md:flex-row-2">
-
+    <div className="flex flex-col md:flex-row">
         <button
             type="button"
             className="bg-indigo-700 hover:bg-indigo-800 text-white font-bold mx-10 p-3 rounded-lg mb-10 mt-2 md:hidden "
@@ -23,7 +22,6 @@ export default function AdministrarPacientes() {
         </div>
 
         <div className="md:w-1/2 lg:w-3/5">
-
             <ListadoPacientes />
         </div>
     </div>
